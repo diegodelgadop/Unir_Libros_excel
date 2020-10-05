@@ -1,0 +1,14 @@
+echo "# Unir_Libros_excel" >> README.md
+
+Sub Combinar_Libros()
+Path = "C:\Users\Diego\...\"    #colocar la ubicación entre las comillas. 
+Filename = Dir(Path & "*.xls")
+Do While Filename <> ""
+Workbooks.Open Filename:=Path & Filename, ReadOnly:=True
+For Each Sheet In ActiveWorkbook.Sheets
+Sheet.Copy After:=ThisWorkbook.Sheets(1)
+Next Sheet
+Workbooks(Filename).Close
+Filename = Dir()
+Loop
+End Sub
